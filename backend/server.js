@@ -23,7 +23,7 @@ const responseArray = [
 // Middleware
 app.use(express.json());
 app.use(cors({
-    origin: ['https://traveling-t9qf.vercel.app', 'http://localhost:5173'], // Replace with your frontend URL if different
+    origin: ['https://traveling-t9qf.vercel.app', 'http://localhost:5173','http://localhost:5174'], // Replace with your frontend URL if different
     methods: ['GET', 'POST','PUT', 'DELETE'],
     credentials: true
 }));
