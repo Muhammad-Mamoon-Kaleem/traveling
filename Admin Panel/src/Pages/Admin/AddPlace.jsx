@@ -112,8 +112,8 @@ const AddPlace = ({ onUpdateSuccess }) => {
 
     try {
       const endpoint = placeDetails
-        ? `backEnd_Url/api/admin/place/${placeDetails._id}`
-        : "backEnd_Url/api/admin/addPlace";
+        ? `https://travel-website-nu-lime.vercel.app/api/admin/place/${placeDetails._id}`
+        : "https://travel-website-nu-lime.vercel.app/api/admin/addPlace";
       const method = placeDetails ? "put" : "post";
 
       const response = await axios[method](endpoint, formDataToSend, config);
