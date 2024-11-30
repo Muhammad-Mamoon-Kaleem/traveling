@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useLocation } from 'react-router-dom';
 
 const AddPlace = ({ onUpdateSuccess }) => {
+  const { backEnd_Url} = useContext(AdminContext);
   const location = useLocation();
   const placeDetails = location.state?.placeDetails;
 
@@ -110,8 +111,8 @@ const AddPlace = ({ onUpdateSuccess }) => {
 
     try {
       const endpoint = placeDetails
-        ? `http://localhost:4000/api/admin/place/${placeDetails._id}`
-        : "http://localhost:4000/api/admin/addPlace";
+        ? `backEnd_Url/api/admin/place/${placeDetails._id}`
+        : "backEnd_Url/api/admin/addPlace";
       const method = placeDetails ? "put" : "post";
 
       const response = await axios[method](endpoint, formDataToSend, config);
