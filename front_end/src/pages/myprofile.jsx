@@ -5,61 +5,61 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const MyProfile = () => {
-  const {usrData, setUserData,token,backend_url,LoadUserData} = useContext(AppContext)
+  const { usrData, setUserData, token, backend_url, LoadUserData } = useContext(AppContext)
 
   const [isEdit, setIsEdit] = useState(false);
-  const [image,setImage]=useState(false);
-  const [loading, setLoading] = useState(false); 
+  const [image, setImage] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-const UpdatingData=async ()=>{
-  setLoading(true); 
-  try {
-    const currentUserData = await LoadUserData();
-    const updatedData = {
-      ...currentUserData,
-      ...usrData
+  const UpdatingData = async () => {
+    setLoading(true);
+    try {
+      const currentUserData = await LoadUserData();
+      const updatedData = {
+        ...currentUserData,
+        ...usrData
+      }
+      const formData = new FormData();
+      formData.append('name', updatedData.name)
+      formData.append('email', updatedData.email)
+      formData.append('phone', updatedData.phone)
+      formData.append('dob', updatedData.dob)
+      formData.append('gender', updatedData.gender)
+      formData.append('address', JSON.stringify(updatedData.address))
+
+      formData.append('_id', updatedData._id)
+
+      //image setup in form 
+      if (image && image !== usrData.image) {
+        formData.append('image', image);
+      }
+
+      const { data } = await axios.post(backend_url + '/api/user/updateUserData', formData)
+      if (data.success) {
+        toast.success(data.message)
+        await LoadUserData()
+        setIsEdit(false)
+        setImage(false)
+      }
+      else {
+        toast.error(data.message)
+      }
+
     }
-    const formData =new FormData();
-  formData.append('name',updatedData.name)
-  formData.append('email',updatedData.email)
-  formData.append('phone',updatedData.phone)
-  formData.append('dob',updatedData.dob)
-  formData.append('gender',updatedData.gender)
-  formData.append('address',JSON.stringify(updatedData.address))
 
-  formData.append('_id',updatedData._id)
+    catch (error) {
+      console.log('error in sending data to update', error);
 
-  //image setup in form 
-  if (image && image !== usrData.image) {
-    formData.append('image', image);
-  }
+    }
+    finally {
+      setLoading(false);
+    }
 
-  const {data}=await  axios.post(backend_url+'/api/user/updateUserData',formData)
-  if(data.success){
-    toast.success(data.message)
-    await LoadUserData()
-    setIsEdit(false)
-    setImage(false)
   }
-  else{
-    toast.error(data.message)
-  }
- 
-} 
- 
-catch (error) {
-    console.log('error in sending data to update',error);
-    
-  }
-  finally {
-    setLoading(false); 
-  }
-  
-}
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
-       {/* Loading Popup */}
-       {loading && (
+      {/* Loading Popup */}
+      {loading && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
           <div className="bg-blue-500 px-6 py-4 rounded-md shadow-md">
             <p className="text-lg font-semibold text-white">Please wait...</p>
@@ -68,35 +68,35 @@ catch (error) {
       )}
       <div className="bg-blue-50 shadow-lg rounded-lg p-6 w-full max-w-2xl">
         <div className="flex items-center justify-between mb-6">
-        {isEdit 
-  ? <label htmlFor='image'>
-      <div className='inline-block cursor-pointer relative'>
-        <img 
-          className='w-36 opacity-60' 
-          src={image ? URL.createObjectURL(image) : (usrData.image || assets.profile_pic)} 
-          alt="Profile" 
-        />
-        <img 
-          className='w-10 absolute bottom-5 right-10' 
-          src={image ? null : assets.upload_icon} 
-          alt="" 
-        />
-      </div>
-      <input 
-        onChange={(e) => setImage(e.target.files[0])} 
-        type="file" 
-        id='image' 
-        hidden 
-      />
-    </label>
-  : <img
-      src={usrData.image || assets.profile_pic} 
-      alt="Profile" 
-      className="w-24 h-24 rounded-full object-cover border-2 border-blue-500"
-    />
-}
+          {isEdit
+            ? <label htmlFor='image'>
+              <div className='inline-block cursor-pointer relative'>
+                <img
+                  className='w-36 opacity-60'
+                  src={image ? URL.createObjectURL(image) : (usrData.image || assets.profile_pic)}
+                  alt="Profile"
+                />
+                <img
+                  className='w-10 absolute bottom-5 right-10'
+                  src={image ? null : assets.upload_icon}
+                  alt=""
+                />
+              </div>
+              <input
+                onChange={(e) => setImage(e.target.files[0])}
+                type="file"
+                id='image'
+                hidden
+              />
+            </label>
+            : <img
+              src={usrData.image || assets.profile_pic}
+              alt="Profile"
+              className="w-24 h-24 rounded-full object-cover border-2 border-blue-500"
+            />
+          }
 
-          
+
           {isEdit ? (
             <input
               type="text"
@@ -130,22 +130,22 @@ catch (error) {
             </div>
 
             <div className="flex items-center">
-  <p className="text-sm text-gray-600 w-32">Phone:</p>
-  {isEdit ? (
-    <input
-      type="tel" // 'tel' ensures numeric keypad on mobile
-      value={usrData.phone || ''}
-      onChange={(e) => {
-        const value = e.target.value.replace(/[^0-9]/g, ''); // Allow only numbers
-        setUserData((prev) => ({ ...prev, phone: value }));
-      }}
-      className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-      placeholder="Enter your phone number" // Optional
-    />
-  ) : (
-    <span className="text-gray-800">{usrData.phone}</span>
-  )}
-</div>
+              <p className="text-sm text-gray-600 w-32">Phone:</p>
+              {isEdit ? (
+                <input
+                  type="tel" // 'tel' ensures numeric keypad on mobile
+                  value={usrData.phone || ''}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/[^0-9]/g, ''); // Allow only numbers
+                    setUserData((prev) => ({ ...prev, phone: value }));
+                  }}
+                  className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter your phone number" // Optional
+                />
+              ) : (
+                <span className="text-gray-800">{usrData.phone}</span>
+              )}
+            </div>
 
 
             <div className="flex items-center">
@@ -176,7 +176,7 @@ catch (error) {
                   className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               ) : (
-                <p className="font-semibold text-gray-800">{usrData.address?.street }</p>
+                <p className="font-semibold text-gray-800">{usrData.address?.street}</p>
               )}
             </div>
           </div>
@@ -209,12 +209,12 @@ catch (error) {
               {isEdit ? (
                 <input
                   type="date"
-                  value={usrData.dob ? usrData.dob.split("T")[0] : ''} 
+                  value={usrData.dob ? usrData.dob.split("T")[0] : ''}
                   onChange={(e) => setUserData((prev) => ({ ...prev, dob: e.target.value }))}
-                  className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="border border-gray-300 rounded-md sm:px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               ) : (
-                <p className="font-semibold text-gray-800">{usrData.dob ? usrData.dob.split("T")[0] : ''}</p>
+                <p className="font-semibold text-gray-800 ">{usrData.dob ? usrData.dob.split("T")[0] : ''}</p>
               )}
             </div>
           </div>
@@ -223,13 +223,13 @@ catch (error) {
         <div className="flex justify-end">
           {isEdit ? (
             <>
-            <button
-              onClick={ UpdatingData}
-              className="bg-green-500 text-white py-2 px-4 rounded-md font-semibold hover:bg-green-600 transition duration-300 mr-4"
-            >
-              Save Information
-            </button>
-            <button  className="bg-blue-600 text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 transition duration-300" onClick={()=>setIsEdit(false)}>Cancel</button>
+              <button
+                onClick={UpdatingData}
+                className="bg-green-500 text-white py-2 px-4 rounded-md font-semibold hover:bg-green-600 transition duration-300 mr-4"
+              >
+                Save Information
+              </button>
+              <button className="bg-blue-600 text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 transition duration-300" onClick={() => setIsEdit(false)}>Cancel</button>
             </>
           ) : (
             <button
