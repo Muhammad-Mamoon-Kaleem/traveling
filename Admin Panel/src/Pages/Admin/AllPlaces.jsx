@@ -26,7 +26,7 @@ const getConfig=()=>({
       const { data } = await axios.post(backEnd_Url + '/api/admin/allplaces', {}, getConfig());
 
       if (data.success) {
-        setAllplaces(data.message); // Use data.message if that's where the places are
+        setAllplaces(data.message.reverse()); // Use data.message if that's where the places are
         console.log(data.message);
       } else {
         console.log("Can't get all places", data.message);
