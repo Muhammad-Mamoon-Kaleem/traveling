@@ -130,18 +130,23 @@ catch (error) {
             </div>
 
             <div className="flex items-center">
-              <p className="text-sm text-gray-600 w-32">Phone:</p>
-              {isEdit ? (
-                <input
-                  type="number"
-                  value={usrData.phone || ''}
-                  onChange={(e) => setUserData((prev) => ({ ...prev, phone: e.target.value }))}
-                  className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              ) : (
-                <p className="font-semibold text-gray-800">{usrData.phone}</p>
-              )}
-            </div>
+  <p className="text-sm text-gray-600 w-32">Phone:</p>
+  {isEdit ? (
+    <input
+      type="tel" // 'tel' ensures numeric keypad on mobile
+      value={usrData.phone || ''}
+      onChange={(e) => {
+        const value = e.target.value.replace(/[^0-9]/g, ''); // Allow only numbers
+        setUserData((prev) => ({ ...prev, phone: value }));
+      }}
+      className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Enter your phone number" // Optional
+    />
+  ) : (
+    <span className="text-gray-800">{usrData.phone}</span>
+  )}
+</div>
+
 
             <div className="flex items-center">
               <p className="text-sm text-gray-600 w-32">Address Line 1:</p>
