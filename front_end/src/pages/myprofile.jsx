@@ -112,113 +112,119 @@ const MyProfile = () => {
         <hr className="my-6" />
 
         <div className="mb-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">Contact Information</h3>
-          <div className="grid grid-cols-1 ">
-            <div className="flex items-center ">
-              <p className="text-sm text-gray-600 w-32">Email Id:</p>
-              {isEdit ? (
-                <input
-                  type="email"
-                  value={usrData.email || ''}
-                  // onChange={(e) => setUserData((prev) => ({ ...prev, email: e.target.value }))}
-                  readOnly
-                  className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              ) : (
-                <p className="font-semibold text-gray-800">{usrData.email}</p>
-              )}
-            </div>
+  <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center sm:text-left">Contact Information</h3>
+  <div className="grid grid-cols-1 gap-4">
+    {/* Email */}
+    <div className="flex flex-col sm:flex-row items-start sm:items-center mb-2">
+      <p className="text-sm text-gray-600 w-full sm:w-32 mb-2 sm:mb-0">Email Id:</p>
+      {isEdit ? (
+        <input
+          type="email"
+          value={usrData.email || ''}
+          readOnly
+          className="border border-gray-300 rounded-md px-3 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      ) : (
+        <p className="font-semibold text-gray-800 w-full">{usrData.email}</p>
+      )}
+    </div>
 
-            <div className="flex items-center">
-              <p className="text-sm text-gray-600 w-32">Phone:</p>
-              {isEdit ? (
-                <input
-                  type="tel" // 'tel' ensures numeric keypad on mobile
-                  value={usrData.phone || ''}
-                  onChange={(e) => {
-                    const value = e.target.value.replace(/[^0-9]/g, ''); // Allow only numbers
-                    setUserData((prev) => ({ ...prev, phone: value }));
-                  }}
-                  className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter your phone number" // Optional
-                />
-              ) : (
-                <span className="text-gray-800">{usrData.phone}</span>
-              )}
-            </div>
+    {/* Phone */}
+    <div className="flex flex-col sm:flex-row items-start sm:items-center mb-2">
+      <p className="text-sm text-gray-600 w-full sm:w-32 mb-2 sm:mb-0">Phone:</p>
+      {isEdit ? (
+        <input
+          type="tel"
+          value={usrData.phone || ''}
+          onChange={(e) => {
+            const value = e.target.value.replace(/[^0-9]/g, '');
+            setUserData((prev) => ({ ...prev, phone: value }));
+          }}
+          className="border border-gray-300 rounded-md px-3 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your phone number"
+        />
+      ) : (
+        <span className="text-gray-800 w-full">{usrData.phone}</span>
+      )}
+    </div>
 
+    {/* Address Line 1 */}
+    <div className="flex flex-col sm:flex-row items-start sm:items-center mb-2">
+      <p className="text-sm text-gray-600 w-full sm:w-32 mb-2 sm:mb-0">Address Line 1:</p>
+      {isEdit ? (
+        <input
+          type="text"
+          value={usrData?.address?.city || ''}
+          onChange={(e) =>
+            setUserData((prev) => ({ ...prev, address: { ...prev.address, city: e.target.value } }))
+          }
+          className="border border-gray-300 rounded-md px-3 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      ) : (
+        <p className="font-semibold text-gray-800 w-full">{usrData.address?.city}</p>
+      )}
+    </div>
 
-            <div className="flex items-center">
-              <p className="text-sm text-gray-600 w-32">Address Line 1:</p>
-              {isEdit ? (
-                <input
-                  type="text"
-                  value={usrData?.address?.city || ''}
-                  onChange={(e) =>
-                    setUserData((prev) => ({ ...prev, address: { ...prev.address, city: e.target.value } }))
-                  }
-                  className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              ) : (
-                <p className="font-semibold text-gray-800">{usrData.address?.city}</p>
-              )}
-            </div>
+    {/* Address Line 2 */}
+    <div className="flex flex-col sm:flex-row items-start sm:items-center mb-2">
+      <p className="text-sm text-gray-600 w-full sm:w-32 mb-2 sm:mb-0">Address Line 2:</p>
+      {isEdit ? (
+        <input
+          type="text"
+          value={usrData?.address?.street || ''}
+          onChange={(e) =>
+            setUserData((prev) => ({ ...prev, address: { ...prev.address, street: e.target.value } }))
+          }
+          className="border border-gray-300 rounded-md px-3 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      ) : (
+        <p className="font-semibold text-gray-800 w-full">{usrData.address?.street}</p>
+      )}
+    </div>
+  </div>
+</div>
 
-            <div className="flex items-center">
-              <p className="text-sm text-gray-600 w-32">Address Line 2:</p>
-              {isEdit ? (
-                <input
-                  type="text"
-                  value={usrData?.address?.street || ''}
-                  onChange={(e) =>
-                    setUserData((prev) => ({ ...prev, address: { ...prev.address, street: e.target.value } }))
-                  }
-                  className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              ) : (
-                <p className="font-semibold text-gray-800">{usrData.address?.street}</p>
-              )}
-            </div>
-          </div>
-        </div>
+<hr className="my-6" />
 
-        <hr className="my-6" />
+<div className="mb-6">
+  <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center sm:text-left">Basic Information</h3>
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {/* Gender */}
+    <div className="flex flex-col sm:flex-row items-start sm:items-center">
+      <p className="text-sm text-gray-600 w-full sm:w-32 mb-2 sm:mb-0">Gender:</p>
+      {isEdit ? (
+        <select
+          value={usrData.gender || ''}
+          onChange={(e) => setUserData((prev) => ({ ...prev, gender: e.target.value }))}
+          className="border border-gray-300 rounded-md px-3 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Rather not say">Rather not say</option>
+        </select>
+      ) : (
+        <p className="text-sm sm:text-base font-semibold text-gray-800">{usrData.gender}</p>
+      )}
+    </div>
 
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">Basic Information</h3>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="flex items-center">
-              <p className="text-sm text-gray-600 w-32">Gender:</p>
-              {isEdit ? (
-                <select
-                  value={usrData.gender || ''}
-                  onChange={(e) => setUserData((prev) => ({ ...prev, gender: e.target.value }))}
-                  className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Rather not say">Rather not say</option>
-                </select>
-              ) : (
-                <p className="font-semibold text-gray-800">{usrData.gender}</p>
-              )}
-            </div>
-
-            <div className="flex items-center">
-              <p className="text-sm text-gray-600 w-32">Birthday:</p>
-              {isEdit ? (
-                <input
-                  type="date"
-                  value={usrData.dob ? usrData.dob.split("T")[0] : ''}
-                  onChange={(e) => setUserData((prev) => ({ ...prev, dob: e.target.value }))}
-                  className="border border-gray-300 rounded-md sm:px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              ) : (
-                <p className="font-semibold text-gray-800 ">{usrData.dob ? usrData.dob.split("T")[0] : ''}</p>
-              )}
-            </div>
-          </div>
-        </div>
+    {/* Birthday */}
+    <div className="flex flex-col sm:flex-row items-start sm:items-center">
+      <p className="text-sm text-gray-600 w-full sm:w-32 mb-2 sm:mb-0">Birthday:</p>
+      {isEdit ? (
+        <input
+          type="date"
+          value={usrData.dob ? usrData.dob.split('T')[0] : ''}
+          onChange={(e) => setUserData((prev) => ({ ...prev, dob: e.target.value }))}
+          className="border border-gray-300 rounded-md px-3 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      ) : (
+        <p className="text-sm sm:text-base font-semibold text-gray-800">
+          {usrData.dob ? usrData.dob.split('T')[0] : ''}
+        </p>
+      )}
+    </div>
+  </div>
+</div>
 
         <div className="flex justify-end">
           {isEdit ? (
