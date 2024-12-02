@@ -133,7 +133,7 @@ catch (error) {
               <p className="text-sm text-gray-600 w-32">Phone:</p>
               {isEdit ? (
                 <input
-                  type="text"
+                  type="number"
                   value={usrData.phone || ''}
                   onChange={(e) => setUserData((prev) => ({ ...prev, phone: e.target.value }))}
                   className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
