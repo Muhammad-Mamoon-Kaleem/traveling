@@ -1,39 +1,61 @@
-import React from 'react'
-import {assets} from '../assets/assets'
+import React from 'react';
+import { assets } from '../assets/assets';
+
 const Footer = () => {
-  return (
-    <div className='md:mx-13'>
-        <div className='flex flex-col sm:flex-row justify-between gap-20 m-10 mt-40 text-sm'>
-    <div className="flex-2">
-        <img className='mb-5 w-40' src={assets.redlogo} alt="" />
-        {/* <p className='w-full md:w-2/3.2 leading-5 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex tempore nesciunt hic! Eaque enim consectetur nam, nemo adipisci culpa consequatur corrupti? Atque!</p> */}
-    </div>
-    <div className="flex-1">
-        <p className='text-xl font-medium mb-5'>COMPANY</p>
-        <ul className=''>
-            <li>Home</li>
-            <li>About us</li>
-            <li>Contact us</li>
-            <li>Privacy policy</li>
-        </ul>
-    </div>
-    <div className="flex-1">
-        <p  className='text-xl font-medium mb-5'>Get in touch</p>
-        <ul>
-            <li>+92 3362024682</li>
-            <li>mamoonkaleem57@gmail.com</li>
-        </ul>
-    </div>
-</div>
+    return (
+        <div className="px-5  bg-gray-100">
+            {/* Main Content */}
+            <div className="flex flex-col sm:flex-row justify-between gap-10 sm:gap-20 py-10">
+                {/* Logo Section */}
+                <div className="flex-2 text-center sm:text-left">
+                    <img className="mb-5 mx-auto sm:mx-0 w-32 sm:w-40" src={assets.redlogo} alt="Logo" />
+                    <p className="text-gray-600 text-sm leading-6 max-w-xs mx-auto sm:mx-0">Our mission is to turn your travel aspirations into reality with top-notch services, unbeatable packages, and a commitment to excellence. From breathtaking destinations to personalized itineraries.</p>
+                </div>
 
-        <div>
-            <hr />
-            <p className='py-5 text-sm text-center'>© 2024 Your Website Name. All rights reserved.
-            </p>
+                {/* Company Links */}
+                <div className="flex-1 text-center sm:text-left">
+                    <p className="text-lg font-semibold mb-5 text-gray-800">Company</p>
+                    <ul className="space-y-2 text-gray-600">
+                        <li>
+                            <a href="/" className="hover:text-blue-500">Home</a>
+                        </li>
+                        <li>
+                            <a href="/about" className="hover:text-blue-500">About Us</a>
+                        </li>
+                        <li>
+                            <a href="/contact" className="hover:text-blue-500">Contact Us</a>
+                        </li>
+                        <li>
+                            <a href="#privacy" className="hover:text-blue-500">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+
+                {/* Get in Touch */}
+                <div className="flex-1 text-center sm:text-left">
+                    <p className="text-lg font-semibold mb-5 text-gray-800">Get in Touch</p>
+                    <ul className="space-y-2 text-gray-600">
+                        <li>
+                            <a href="tel:+923362024682" className="hover:text-blue-500">+92 3037548335</a>
+                        </li>
+                        <li>
+                            <a href="mailto:mamoonkaleem57@gmail.com" className="hover:text-blue-500">
+                                mamoonkaleem57@gmail.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {/* Footer Bottom */}
+            <div>
+                <hr className="border-gray-300" />
+                <p className="py-5 text-sm text-center text-gray-600">
+                    © 2024 Your Website Name. All rights reserved.
+                </p>
+            </div>
         </div>
-    </div>
-    
-  )
-}
+    );
+};
 
-export default Footer
+export default Footer;
