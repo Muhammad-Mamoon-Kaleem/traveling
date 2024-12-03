@@ -92,7 +92,7 @@ const MyProfile = () => {
             : <img
               src={usrData.image || assets.profile_pic}
               alt="Profile"
-              className="w-28 h-28 rounded-full object-cover border-2 border-blue-500"
+              className="w-22 h-22 rounded-full object-cover border-2 border-blue-500"
             />
           }
 
