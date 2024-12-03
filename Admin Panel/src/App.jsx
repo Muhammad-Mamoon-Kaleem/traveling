@@ -20,27 +20,29 @@ const App = () => {
     <div>
       {/* Move ToastContainer outside the conditional rendering */}
       <ToastContainer />
-      
+
       {atoken ? (
         <>
           <Navbar />
           {/* Main layout: Sidebar + Content */}
           <div className='flex'>
             {/* Sidebar with a fixed width */}
-            <div className='w-44 sm:w-64'>
+            <div className='hidden sm:block sm:w-64'>
               <SideBar />
-             
+            </div>
+            <div className="block sm:hidden">
+              <SideBar />
             </div>
             {/* Content area that takes the remaining space */}
             <div className='flex-1 pl-1'>
               <Routes>
-                <Route path='/' element={<DashBoard/>} />
+                <Route path='/' element={<DashBoard />} />
                 <Route path='/admin-dashboard' element={<DashBoard />} />
                 <Route path='/addplace' element={<AddPlace />} />
                 <Route path='/bookinglist' element={<BookingsList />} />
                 <Route path='/allplaces' element={<AllPlaces />} />
 
-                <Route path='/updateplace/:id' element={<AddPlace/>} />
+                <Route path='/updateplace/:id' element={<AddPlace />} />
               </Routes>
             </div>
           </div>
