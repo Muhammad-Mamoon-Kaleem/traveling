@@ -146,7 +146,7 @@ const AddPlace = ({ onUpdateSuccess }) => {
 
   return (
     <div className="sm:p-6 bg-[#f2f3ff] relative">
-      <h2 className="text-2xl font-bold mb-4">{placeDetails ? "Update" : "Add"} a Place</h2>
+      <h2 className="text-2xl font-bold mb-4 p-4">{placeDetails ? "Update" : "Add"} a Place</h2>
       {message && <p className="mb-4 text-blue-500">{message}</p>}
       {imageError && <p className="mb-4 text-red-500">{imageError}</p>}
 
@@ -161,7 +161,7 @@ const AddPlace = ({ onUpdateSuccess }) => {
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8 p-4 ">
           <div className="mb-2">
             <label className="block text-sm font-medium">Place Name</label>
             <input
