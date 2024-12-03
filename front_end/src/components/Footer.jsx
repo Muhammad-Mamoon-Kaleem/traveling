@@ -3,7 +3,7 @@ import { assets } from '../assets/assets';
 
 const Footer = () => {
     return (
-        <div className="px-5  bg-gray-100">
+        <div className="px-5 mt-3 bg-gray-100">
             {/* Main Content */}
             <div className="flex flex-col sm:flex-row justify-between gap-10 sm:gap-20 py-10">
                 {/* Logo Section */}
