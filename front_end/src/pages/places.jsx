@@ -39,15 +39,15 @@ const Places = () => {
 
       {/* Right side: Places */}
       
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid items-center ml-9 justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filterplace.length > 0 ? (
             filterplace.map((v, i) => (
               <div 
                 key={i}
                 onClick={() => navigate(`/booking/${v._id}`)} 
-                className='border border-blue-200 rounded-lg overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500'
+                className='border  border-blue-200 rounded-lg overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 '
               >
-                <div  className="h-48 w-64">
+                <div  className="h-48 w-full">
                 <img 
                   className='w-full h-full object-cover bg-blue-50' 
                   src={v.images[0]} 
