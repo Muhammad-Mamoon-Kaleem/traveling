@@ -39,7 +39,7 @@ const Places = () => {
 
       {/* Right side: Places */}
       
-        <div className="grid items-center ml-9 justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid items-center ml-7 justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filterplace.length > 0 ? (
             filterplace.map((v, i) => (
               <div 
