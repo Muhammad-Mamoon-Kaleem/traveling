@@ -78,7 +78,7 @@ const ContactUs = () => {
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto bg-white p-8 shadow-md rounded-md">
           <h2 className="text-3xl font-semibold text-center mb-8 text-gray-800">Contact Us</h2>
-          <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
+          <form className="flex flex-col sm:grid sm:grid-cols-2 gap-6" onSubmit={handleSubmit}>
             <input
               type="text"
               name="name"
@@ -86,7 +86,7 @@ const ContactUs = () => {
               onChange={handleChange}
               placeholder="Your Name"
               required
-              className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full  p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <input
